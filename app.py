@@ -1,13 +1,11 @@
 import logging
-import os
-import time
 from logging import FileHandler
 from app import app
-from app.config import LOG_PATH
+from app.config import LOG_FILE
 
 if __name__ == '__main__':
     # 日志句柄
-    fh = FileHandler(os.path.join(LOG_PATH, '{}.log'.format(time.strftime('%Y%m%d'))))
+    fh = FileHandler(LOG_FILE)
     # 日志级别
     fh.setLevel(logging.DEBUG)
     # 进程日志输出到文件

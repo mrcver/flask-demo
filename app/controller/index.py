@@ -1,6 +1,8 @@
 from app import app
 from flask import request, render_template, url_for
 
+from app.util import response, common
+
 
 @app.route('/')
 @app.route('/index')
@@ -21,30 +23,21 @@ def user_profile(uid=None):
 
 @app.route('/post', methods=['POST', 'GET'])
 def post():
-    return 'Hello World!'
-
-
-@app.route('/static-test')
-def static_test():
-    # return url_for('static', filename='style.css')
-    return url_for('static', filename='style1.css')
-
-
-@app.route('/add_post', methods=['GET', 'POST'])
-def add_post():
     if request.method == 'GET':
         return render_template('post/add.html')
     else:
-        app.logger.debug(request.json)
-        print(request.is_json)
-        return 'post'
+        common.log('post-add').info(request)
+        return response.success({
+            'name': request.form['name'],
+            'age': request.form['age'],
+        })
+
+
+@app.route('/css-test')
+def static_test():
+    return url_for('static', filename='css/style.css')
 
 
 @app.route('/test_json', methods=['GET'])
 def test_json():
     return {'name': 'tim'}
-
-
-@app.route('/test_json2', methods=['GET'])
-def test_json2():
-    return {'name': 'tim2'}
