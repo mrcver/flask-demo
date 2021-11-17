@@ -1,32 +1,7 @@
-import json as py_json
 import logging
 import time
 
-from app.config import DEBUG_LOG, MAX_CONTENT_LENGTH, ALLOWED_EXTENSIONS, CMD_LOG_LEVEL, FILE_LOG_LEVEL, LOG_FILE
-from flask import jsonify, request
-
-
-def json(body=None):
-    """
-    * 返回Json数据
-    * @param  dict body
-    * @return json
-    """
-    if body is None:
-        body = {}
-    debug_id = unique_id()
-    if (DEBUG_LOG):
-        log().info(
-            py_json.dumps({
-                'LOG_ID': debug_id,
-                'IP_ADDRESS': request.remote_addr,
-                'REQUEST_URL': request.url,
-                'REQUEST_METHOD': request.method,
-                'PARAMETERS': request.args,
-                'RESPONSES': body
-            }))
-    body['debug_id'] = debug_id
-    return jsonify(body)
+from app.config import CMD_LOG_LEVEL, FILE_LOG_LEVEL, LOG_FILE
 
 
 def unique_id(prefix=''):

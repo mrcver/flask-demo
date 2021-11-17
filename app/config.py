@@ -21,4 +21,4 @@ LOG_FILE = os.path.join(LOG_PATH, '{}.log'.format(time.strftime('%Y%m%d')))
 # 文件日志级别
 FILE_LOG_LEVEL = logging.INFO
 # 控制台日志级别
-CMD_LOG_LEVEL = logging.INFO
+CMD_LOG_LEVEL = logging.DEBUG

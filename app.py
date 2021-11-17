@@ -3,6 +3,7 @@ from logging import FileHandler
 from app import app
 from app.config import LOG_FILE
 
+# web服务启动入口文件
 if __name__ == '__main__':
     # 日志句柄
     fh = FileHandler(LOG_FILE)
